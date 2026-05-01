@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.006" tests="6" errors="0" skipped="6" failures="0">
+  <properties/>
+  <testcase name="whenRegisterWithValidData_thenReturn201" classname="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="disabledWithoutDocker is true and Docker is not available"/>
+    <system-out><![CDATA[21:19:23.763 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+21:19:23.896 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+21:19:23.897 [main] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+21:19:23.903 [main] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 29.3.1
+  API Version: 1.54
+  Operating System: Docker Desktop
+  Total Memory: 7836 MB
+21:19:23.909 [main] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+21:19:23.910 [main] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+]]></system-out>
+  </testcase>
+  <testcase name="whenAccessProtectedEndpointWithoutToken_thenReturn401" classname="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="disabledWithoutDocker is true and Docker is not available"/>
+  </testcase>
+  <testcase name="whenLoginWithInvalidPassword_thenReturn401" classname="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="disabledWithoutDocker is true and Docker is not available"/>
+  </testcase>
+  <testcase name="whenRefreshWithValidToken_thenReturnNewAccessToken" classname="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="disabledWithoutDocker is true and Docker is not available"/>
+  </testcase>
+  <testcase name="whenRegisterWithDuplicateEmail_thenReturn400" classname="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="disabledWithoutDocker is true and Docker is not available"/>
+  </testcase>
+  <testcase name="whenLoginWithValidCredentials_thenReturnTokens" classname="com.smartgig.auth.controller.AuthControllerIntegrationTest" time="0.0">
+    <skipped message="disabledWithoutDocker is true and Docker is not available"/>
+  </testcase>
+</testsuite>

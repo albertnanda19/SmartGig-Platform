@@ -1,0 +1,12 @@
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/exception/ResourceNotFoundException.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/exception/UnauthorizedException.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/response/PagedResponse.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/response/ApiResponse.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/constants/AppConstants.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/dto/UserContext.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/util/DateUtil.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/exception/SmartGigException.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/util/SlugUtil.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/exception/BusinessException.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/constants/KafkaTopics.java
+/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/common-lib/src/main/java/com/smartgig/common/exception/GlobalExceptionHandler.java

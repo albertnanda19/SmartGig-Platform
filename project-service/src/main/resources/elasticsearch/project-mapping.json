@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "title": { "type": "text", "analyzer": "custom_analyzer", "fields": { "keyword": { "type": "keyword" } } },
+    "description": { "type": "text", "analyzer": "custom_analyzer" },
+    "skillNames": { "type": "keyword" }
+  }
+}
+

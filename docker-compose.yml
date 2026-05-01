@@ -1,0 +1,148 @@
+version: "3.9"
+
+networks:
+  smartgig-network:
+    driver: bridge
+    name: smartgig-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  kafka_data:
+  mongo_data:
+  elasticsearch_data:
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: smartgig-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: smartgig
+      POSTGRES_PASSWORD: smartgig123
+      POSTGRES_DB: smartgig_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - smartgig-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartgig"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: smartgig-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass smartgig123 --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    networks:
+      - smartgig-network
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a smartgig123 ping | grep PONG"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: smartgig-kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - smartgig-network
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list >/dev/null 2>&1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: smartgig-kafka-ui
+    ports:
+      - "8090:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: smartgig
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - smartgig-network
+
+  mongo:
+    image: mongo:7.0
+    container_name: smartgig-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: smartgig
+      MONGO_INITDB_ROOT_PASSWORD: smartgig123
+      MONGO_INITDB_DATABASE: smartgig_analytics
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - smartgig-network
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --username smartgig --password smartgig123 --authenticationDatabase admin --eval \"db.adminCommand('ping')\" >/dev/null 2>&1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: smartgig-elasticsearch
+    ports:
+      - "9200:9200"
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - smartgig-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health >/dev/null 2>&1"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  zipkin:
+    image: openzipkin/zipkin:3
+    container_name: smartgig-zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - smartgig-network
+
+  # eureka-server akan di-build dari source, jalankan service ini terpisah
+  eureka-server:
+    build: ./eureka-server
+    container_name: smartgig-eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - smartgig-network

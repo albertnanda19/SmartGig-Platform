@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    container_name: smartgig-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - smartgig-network
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: smartgig-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin123
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - smartgig-network
+
+volumes:
+  grafana_data:
+
+networks:
+  smartgig-network:
+    external: true
+
