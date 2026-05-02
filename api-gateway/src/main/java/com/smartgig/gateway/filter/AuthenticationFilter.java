@@ -29,8 +29,10 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             "/api/v1/auth/login",
             "/api/v1/auth/register",
             "/api/v1/auth/refresh",
-            "/actuator/**"
-    );
+            "/api/v1/auth/",
+            "/api/v1/projects/",
+            "/api/v1/users/",
+            "/actuator/**");
 
     private final JwtUtil jwtUtil;
     private final ObjectMapper objectMapper = new ObjectMapper();
@@ -110,4 +112,3 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     public static class Config {
     }
 }
-

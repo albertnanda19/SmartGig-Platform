@@ -38,14 +38,23 @@ eureka:
     prefer-ip-address: true
 
 management:
+  endpoint:
+    health:
+      show-details: when_authorized
+      show-components: when_authorized
+    shutdown:
+      enabled: false
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include: health,info,prometheus,metrics,loggers
+        exclude: shutdown,env,configprops,heapdump,threaddump
   metrics:
-    export:
-      prometheus:
-        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 50ms,100ms,200ms,500ms,1000ms
   tracing:
     sampling:
       probability: 1.0
@@ -65,6 +74,8 @@ springdoc:
     path: /swagger-ui.html
 
 logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
     com.smartgig: DEBUG
 

@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.Instant;
 import java.util.UUID;
 
 @Data
@@ -17,7 +16,7 @@ public class ApiResponse<T> {
     private boolean success;
     private String message;
     private T data;
-    private LocalDateTime timestamp;
+    private Instant timestamp;
     private String traceId;
 
     public static <T> ApiResponse<T> success(T data) {
@@ -29,7 +28,7 @@ public class ApiResponse<T> {
                 .success(true)
                 .message(message)
                 .data(data)
-                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
+                .timestamp(Instant.now())
                 .traceId(UUID.randomUUID().toString())
                 .build();
     }
@@ -38,7 +37,7 @@ public class ApiResponse<T> {
         return ApiResponse.<T>builder()
                 .success(false)
                 .message(message)
-                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
+                .timestamp(Instant.now())
                 .traceId(UUID.randomUUID().toString())
                 .build();
     }

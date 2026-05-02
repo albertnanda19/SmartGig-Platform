@@ -1,0 +1,149 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.smartgig:api-gateway >----------------------
+[INFO] Building api-gateway 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ api-gateway >>>
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (default) @ api-gateway ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] argLine set to empty
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ api-gateway ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ api-gateway ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ api-gateway ---
+[INFO] skip non existing resourceDirectory /Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/api-gateway/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ api-gateway ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ api-gateway <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.5:run (default-cli) @ api-gateway ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-02T04:13:46.508+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] c.s.gateway.ApiGatewayApplication        : Starting ApiGatewayApplication using Java 25.0.2 with PID 50212 (/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/api-gateway/target/classes started by albert-dibimbing in /Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/api-gateway)
+2026-05-02T04:13:46.509+07:00 DEBUG [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] c.s.gateway.ApiGatewayApplication        : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-02T04:13:46.509+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] c.s.gateway.ApiGatewayApplication        : The following 1 profile is active: "dev"
+2026-05-02T04:13:46.935+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-05-02T04:13:46.936+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-05-02T04:13:46.949+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2026-05-02T04:13:47.045+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=b4426989-99ec-3106-b370-d853fb6bdd3c
+2026-05-02T04:13:47.076+07:00  WARN [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-02T04:13:47.077+07:00  WARN [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-02T04:13:47.078+07:00  WARN [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-02T04:13:47.078+07:00  WARN [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2026-05-02T04:13:47.079+07:00  WARN [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (file:/Users/albert-dibimbing/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.20/tomcat-embed-core-10.1.20.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-05-02T04:13:47.161+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-02T04:13:47.167+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-02T04:13:47.167+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by io.netty.util.internal.PlatformDependent0$4 (file:/Users/albert-dibimbing/.m2/repository/io/netty/netty-common/4.1.109.Final/netty-common-4.1.109.Final.jar)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$4
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+2026-05-02T04:13:47.302+07:00 ERROR [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] i.n.r.d.DnsServerAddressStreamProviders  : Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2026-05-02T04:13:47.719+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-05-02T04:13:47.810+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 5 endpoint(s) beneath base path '/actuator'
+2026-05-02T04:13:47.912+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-05-02T04:13:47.922+07:00  WARN [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02T04:13:47.946+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-02T04:13:47.998+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-02T04:13:48.000+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:13:48.009+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-02T04:13:48.009+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-02T04:13:48.009+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-02T04:13:48.010+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-02T04:13:48.010+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-02T04:13:48.010+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-02T04:13:48.010+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-02T04:13:48.176+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-02T04:13:48.177+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-02T04:13:48.178+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-02T04:13:48.180+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1777670028179 with initial instances count: 5
+2026-05-02T04:13:48.180+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application API-GATEWAY with eureka with status UP
+2026-05-02T04:13:48.181+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1777670028181, current=UP, previous=STARTING]
+2026-05-02T04:13:48.181+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/192.168.1.72:api-gateway:8080: registering service...
+2026-05-02T04:13:48.199+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/192.168.1.72:api-gateway:8080 - registration status: 204
+2026-05-02T04:13:48.232+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-05-02T04:13:48.233+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8080
+2026-05-02T04:13:48.257+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [           main] [                                                 ] c.s.gateway.ApiGatewayApplication        : Started ApiGatewayApplication in 2.01 seconds (process running for 2.166)
+2026-05-02T04:18:48.020+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:23:48.027+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:28:48.036+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:33:48.048+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:38:48.060+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:43:48.068+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:48:48.079+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:53:48.090+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:58:48.100+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:03:48.111+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:08:48.121+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:13:48.133+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:18:48.090+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:23:48.102+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:28:48.112+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:33:48.120+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:38:48.131+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:43:48.138+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:48:48.149+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:53:48.157+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:58:48.165+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:03:48.176+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:08:48.187+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:13:48.198+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:18:48.208+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:23:48.218+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:28:48.228+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:33:48.237+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:38:48.246+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:43:48.258+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:48:48.271+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:53:48.283+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:58:48.293+07:00  INFO [api-gateway,,] 50212 --- [api-gateway] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:49 h
+[INFO] Finished at: 2026-05-02T07:03:34+07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.5:run (default-cli) on project api-gateway: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

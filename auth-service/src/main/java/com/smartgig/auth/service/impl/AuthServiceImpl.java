@@ -5,13 +5,14 @@ import com.smartgig.auth.dto.request.RefreshTokenRequest;
 import com.smartgig.auth.dto.request.RegisterRequest;
 import com.smartgig.auth.dto.response.AuthResponse;
 import com.smartgig.auth.entity.UserCredential;
-import com.smartgig.auth.mapper.UserCredentialMapper;
+import com.smartgig.auth.mapper.UserCredentialMapperImpl;
 import com.smartgig.auth.repository.UserCredentialRepository;
 import com.smartgig.auth.service.AuthService;
 import com.smartgig.auth.util.JwtUtil;
 import com.smartgig.common.exception.BusinessException;
 import com.smartgig.common.exception.UnauthorizedException;
 import com.smartgig.common.response.ApiResponse;
+import jakarta.persistence.EntityManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,10 +29,11 @@ public class AuthServiceImpl implements AuthService {
     private static final Duration REFRESH_TTL = Duration.ofDays(7);
 
     private final UserCredentialRepository repository;
-    private final UserCredentialMapper mapper;
+    private final UserCredentialMapperImpl mapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final RedisTemplate<String, String> redisTemplate;
+    private final EntityManager entityManager;
     private final long accessExpirationMs;
 
     @Override
@@ -47,9 +49,10 @@ public class AuthServiceImpl implements AuthService {
         UserCredential entity = mapper.toEntity(request);
         entity.setPasswordHash(passwordEncoder.encode(request.getPassword()));
         UserCredential saved = repository.saveAndFlush(entity);
-        saved = repository.findById(saved.getId()).orElseThrow();
+        entityManager.refresh(saved);
 
-        String accessToken = jwtUtil.generateAccessToken(saved.getUserId(), saved.getEmail(), saved.getRole().name(), saved.getUsername());
+        String accessToken = jwtUtil.generateAccessToken(saved.getUserId(), saved.getEmail(), saved.getRole().name(),
+                saved.getUsername());
         String refreshToken = jwtUtil.generateRefreshToken(saved.getUserId());
         storeRefreshToken(saved.getUserId(), refreshToken);
 
@@ -82,7 +85,8 @@ public class AuthServiceImpl implements AuthService {
         user.setLastLoginAt(now);
         UserCredential saved = repository.save(user);
 
-        String accessToken = jwtUtil.generateAccessToken(saved.getUserId(), saved.getEmail(), saved.getRole().name(), saved.getUsername());
+        String accessToken = jwtUtil.generateAccessToken(saved.getUserId(), saved.getEmail(), saved.getRole().name(),
+                saved.getUsername());
         String refreshToken = jwtUtil.generateRefreshToken(saved.getUserId());
         storeRefreshToken(saved.getUserId(), refreshToken);
 
@@ -111,7 +115,8 @@ public class AuthServiceImpl implements AuthService {
         UserCredential user = repository.findByUserId(userId)
                 .orElseThrow(() -> new UnauthorizedException("Refresh token expired or invalid"));
 
-        String accessToken = jwtUtil.generateAccessToken(userId, user.getEmail(), user.getRole().name(), user.getUsername());
+        String accessToken = jwtUtil.generateAccessToken(userId, user.getEmail(), user.getRole().name(),
+                user.getUsername());
         AuthResponse response = toAuthResponse(user, accessToken, refreshToken);
         return ApiResponse.success("Refreshed", response);
     }
@@ -147,18 +152,18 @@ public class AuthServiceImpl implements AuthService {
 
     public AuthServiceImpl(
             UserCredentialRepository repository,
-            UserCredentialMapper mapper,
+            UserCredentialMapperImpl mapper,
             PasswordEncoder passwordEncoder,
             JwtUtil jwtUtil,
             RedisTemplate<String, String> redisTemplate,
-            @org.springframework.beans.factory.annotation.Value("${jwt.expiration}") long accessExpirationMs
-    ) {
+            EntityManager entityManager,
+            @org.springframework.beans.factory.annotation.Value("${jwt.expiration}") long accessExpirationMs) {
         this.repository = repository;
         this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.redisTemplate = redisTemplate;
+        this.entityManager = entityManager;
         this.accessExpirationMs = accessExpirationMs;
     }
 }
-

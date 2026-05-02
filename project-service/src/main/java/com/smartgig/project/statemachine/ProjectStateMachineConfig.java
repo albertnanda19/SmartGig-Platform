@@ -4,7 +4,7 @@ import com.smartgig.project.entity.Project;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.action.Action;
-import org.springframework.statemachine.config.EnableStateMachine;
+import org.springframework.statemachine.config.EnableStateMachineFactory;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
@@ -16,7 +16,7 @@ import java.util.EnumSet;
 import java.util.Optional;
 
 @Configuration
-@EnableStateMachine
+@EnableStateMachineFactory
 public class ProjectStateMachineConfig extends StateMachineConfigurerAdapter<ProjectStatus, ProjectEvent> {
 
     public static final String HEADER_PROJECT = "project";

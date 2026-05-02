@@ -43,10 +43,21 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
+    @GetMapping("/")
+    @Operation(summary = "User service root endpoint")
+    public ResponseEntity<ApiResponse<java.util.Map<String, Object>>> getUsersRoot() {
+        return ResponseEntity.ok(ApiResponse.success(java.util.Map.of(
+                "service", "User Service",
+                "version", "1.0.0",
+                "endpoints", "/api/v1/users/profile, /api/v1/users/profile/{id}, /api/v1/users/skills/**",
+                "status", "UP")));
+    }
+
     @PostMapping("/profile")
     @Operation(summary = "Create my profile")
     @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "201", description = "Created", content = @Content(schema = @Schema(implementation = ApiResponse.class)))
-    public ResponseEntity<ApiResponse<UserProfileResponse>> createUserProfile(HttpServletRequest http, @Valid @RequestBody CreateUserProfileRequest request) {
+    public ResponseEntity<ApiResponse<UserProfileResponse>> createUserProfile(HttpServletRequest http,
+            @Valid @RequestBody CreateUserProfileRequest request) {
         Long userId = extractUserIdFromHeader(http);
         request.setUserId(userId);
         UserProfileResponse response = userService.createUserProfile(request);
@@ -68,14 +79,16 @@ public class UserController {
 
     @PutMapping("/profile")
     @Operation(summary = "Update my profile")
-    public ResponseEntity<ApiResponse<UserProfileResponse>> updateMyProfile(HttpServletRequest http, @RequestBody UpdateUserProfileRequest request) {
+    public ResponseEntity<ApiResponse<UserProfileResponse>> updateMyProfile(HttpServletRequest http,
+            @RequestBody UpdateUserProfileRequest request) {
         Long userId = extractUserIdFromHeader(http);
         return ResponseEntity.ok(ApiResponse.success("Updated", userService.updateUserProfile(userId, request)));
     }
 
     @PostMapping("/skills")
     @Operation(summary = "Add skill to my profile")
-    public ResponseEntity<ApiResponse<UserSkillResponse>> addSkill(HttpServletRequest http, @Valid @RequestBody AddUserSkillRequest request) {
+    public ResponseEntity<ApiResponse<UserSkillResponse>> addSkill(HttpServletRequest http,
+            @Valid @RequestBody AddUserSkillRequest request) {
         Long userId = extractUserIdFromHeader(http);
         return ResponseEntity.ok(ApiResponse.success("Added", userService.addSkillToUser(userId, request)));
     }
@@ -106,16 +119,17 @@ public class UserController {
     public ResponseEntity<ApiResponse<Page<UserProfileResponse>>> getFreelancers(
             @RequestParam(required = false) Long skillId,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
+            @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<UserProfileResponse> result = skillId == null ? userService.getFreelancers(pageable) : userService.getFreelancersBySkill(skillId, pageable);
+        Page<UserProfileResponse> result = skillId == null ? userService.getFreelancers(pageable)
+                : userService.getFreelancersBySkill(skillId, pageable);
         return ResponseEntity.ok(ApiResponse.success(result));
     }
 
     @GetMapping("/{userId1}/similarity/{userId2}")
     @Operation(summary = "Get skill similarity between two users")
-    public ResponseEntity<ApiResponse<SkillSimilarityResponse>> getSkillSimilarity(@PathVariable Long userId1, @PathVariable Long userId2) {
+    public ResponseEntity<ApiResponse<SkillSimilarityResponse>> getSkillSimilarity(@PathVariable Long userId1,
+            @PathVariable Long userId2) {
         return ResponseEntity.ok(ApiResponse.success(userService.calculateSkillSimilarity(userId1, userId2)));
     }
 
@@ -134,4 +148,3 @@ public class UserController {
         return Long.parseLong(raw);
     }
 }
-

@@ -1,11 +1,6 @@
 # SmartGig Platform
 
-SmartGig Platform adalah Freelance Intelligence Marketplace berbasis Spring Boot 3.2 microservices.
-
-![Java](https://img.shields.io/badge/Java-21-blue)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.x-brightgreen)
-![Apache Kafka](https://img.shields.io/badge/Kafka-Apache-black)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+Freelance Intelligence Marketplace berbasis Spring Boot microservices.
 
 ```mermaid
 flowchart LR
@@ -42,6 +37,43 @@ flowchart LR
   PROM[Prometheus] --> GRAF[Grafana]
 ```
 
+## Overview
+
+SmartGig menggabungkan:
+- Event-driven architecture dengan Kafka
+- Skill graph untuk matching freelancer dan project
+- Intelligence engine untuk matching dan pricing
+- Real-time notifications via WebSocket (STOMP)
+- Full-text search dengan Elasticsearch
+- Distributed tracing via Zipkin
+- Observability via Prometheus + Grafana
+
+## Services
+
+| Service | Port | Deskripsi |
+|---|---:|---|
+| Eureka Server | 8761 | Service discovery |
+| API Gateway | 8080 | Entry point, JWT validation, rate limiting |
+| Auth Service | 8081 | Auth, JWT tokens, refresh tokens |
+| User Service | 8082 | User profiles, skills, skill graph |
+| Project Service | 8083 | Projects marketplace, search via Elasticsearch |
+| Intelligence Service | 8084 | Matching engine, price prediction |
+| Notification Service | 8085 | Kafka consumer + WebSocket push |
+| Analytics Service | 8086 | Event logging + Quartz batch jobs |
+
+## Infrastructure
+
+| Component | Port | Link |
+|---|---:|---|
+| PostgreSQL | 5432 | - |
+| Redis | 6379 | Redis Commander `http://localhost:8091` |
+| Kafka | 9092 | Kafka UI `http://localhost:8090` |
+| MongoDB | 27017 | Mongo Express `http://localhost:8092` |
+| Elasticsearch | 9200 | - |
+| Zipkin | 9411 | `http://localhost:9411` |
+| Prometheus | 9090 | `http://localhost:9090` |
+| Grafana | 3000 | `http://localhost:3000` |
+
 ## Prerequisites
 
 - Docker
@@ -51,31 +83,26 @@ flowchart LR
 
 ## Getting Started
 
-1. Clone repo
-2. Masuk ke folder project
-
 ```bash
 cd smartgig-platform
 ```
-
-3. Jalankan infrastruktur
 
 ```bash
 docker-compose up -d
 ```
 
-4. Build shared library
-
 ```bash
 mvn install -pl common-lib
 ```
-
-5. Jalankan service (contoh)
 
 ```bash
 mvn -pl eureka-server spring-boot:run
 mvn -pl api-gateway spring-boot:run
 mvn -pl auth-service spring-boot:run
+```
+
+```bash
+make init-kafka
 ```
 
 ## Port Mapping
@@ -85,8 +112,8 @@ mvn -pl auth-service spring-boot:run
 | api-gateway | 8080 |
 | auth-service | 8081 |
 | user-service | 8082 |
-| intelligence-service | 8083 |
-| project-service | 8084 |
+| project-service | 8083 |
+| intelligence-service | 8084 |
 | notification-service | 8085 |
 | analytics-service | 8086 |
 | eureka-server | 8761 |
@@ -108,4 +135,10 @@ mvn -pl auth-service spring-boot:run
 - Grafana: `http://localhost:3000`
 - Zipkin: `http://localhost:9411`
 - Eureka Dashboard: `http://localhost:8761`
+
+## Running Tests
+
+```bash
+mvn verify -pl auth-service,user-service,project-service
+```
 

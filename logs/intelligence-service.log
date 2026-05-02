@@ -1,0 +1,152 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.smartgig:intelligence-service >------------------
+[INFO] Building intelligence-service 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ intelligence-service >>>
+[INFO] 
+[INFO] --- jacoco:0.8.14:prepare-agent (default) @ intelligence-service ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] argLine set to empty
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ intelligence-service ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ intelligence-service ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ intelligence-service ---
+[INFO] skip non existing resourceDirectory /Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/intelligence-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ intelligence-service ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ intelligence-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.5:run (default-cli) @ intelligence-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-02T03:58:20.636+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] c.s.i.IntelligenceServiceApplication     : Starting IntelligenceServiceApplication using Java 25.0.2 with PID 37865 (/Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/intelligence-service/target/classes started by albert-dibimbing in /Users/albert-dibimbing/Documents/Coding Repo/smartGig-platform/smartgig-platform/intelligence-service)
+2026-05-02T03:58:20.646+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] c.s.i.IntelligenceServiceApplication     : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-02T03:58:20.647+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] c.s.i.IntelligenceServiceApplication     : The following 1 profile is active: "dev"
+2026-05-02T03:58:21.537+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.RxJava2OnClasspathCondition    : RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2026-05-02T03:58:21.538+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.ReactorOnClasspathCondition    : Reactor related Aspect extensions are not activated because Resilience4j Reactor module is not on the classpath.
+2026-05-02T03:58:21.545+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.RxJava2OnClasspathCondition    : RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2026-05-02T03:58:21.545+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.ReactorOnClasspathCondition    : Reactor related Aspect extensions are not activated because Resilience4j Reactor module is not on the classpath.
+2026-05-02T03:58:21.596+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.RxJava2OnClasspathCondition    : RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2026-05-02T03:58:21.596+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.ReactorOnClasspathCondition    : Reactor related Aspect extensions are not activated because Resilience4j Reactor module is not on the classpath.
+2026-05-02T03:58:21.604+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.RxJava2OnClasspathCondition    : RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2026-05-02T03:58:21.604+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.ReactorOnClasspathCondition    : Reactor related Aspect extensions are not activated because Resilience4j Reactor module is not on the classpath.
+2026-05-02T03:58:21.608+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.RxJava2OnClasspathCondition    : RxJava2 related Aspect extensions are not activated, because RxJava2 is not on the classpath.
+2026-05-02T03:58:21.609+07:00 DEBUG [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] i.g.r.s.u.ReactorOnClasspathCondition    : Reactor related Aspect extensions are not activated because Resilience4j Reactor module is not on the classpath.
+2026-05-02T03:58:21.857+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-05-02T03:58:21.858+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-05-02T03:58:21.871+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2026-05-02T03:58:22.193+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.cloud.context.scope.GenericScope     : BeanFactory id=289c747a-f6e6-37e4-b055-69fe37a4dcd2
+2026-05-02T03:58:22.575+07:00  WARN [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-05-02T03:58:22.579+07:00  WARN [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (file:/Users/albert-dibimbing/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.20/tomcat-embed-core-10.1.20.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-05-02T03:58:22.939+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2026-05-02T03:58:22.951+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-02T03:58:22.951+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-02T03:58:23.079+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-02T03:58:23.080+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2384 ms
+2026-05-02T03:58:23.970+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.c.openfeign.FeignClientFactoryBean   : For 'user-service' URL not provided. Will try picking an instance via load-balancing.
+2026-05-02T03:58:24.026+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.c.openfeign.FeignClientFactoryBean   : For 'project-service' URL not provided. Will try picking an instance via load-balancing.
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by io.netty.util.internal.PlatformDependent0$4 (file:/Users/albert-dibimbing/.m2/repository/io/netty/netty-common/4.1.109.Final/netty-common-4.1.109.Final.jar)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$4
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+2026-05-02T03:58:25.288+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-05-02T03:58:25.325+07:00  WARN [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-02T03:58:25.337+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 6 endpoint(s) beneath base path '/actuator'
+2026-05-02T03:58:25.381+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-02T03:58:25.430+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-02T03:58:25.432+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-02T03:58:25.443+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-02T03:58:25.540+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-02T03:58:25.541+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-02T03:58:25.542+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-02T03:58:25.544+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1777669105544 with initial instances count: 2
+2026-05-02T03:58:25.551+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application INTELLIGENCE-SERVICE with eureka with status UP
+2026-05-02T03:58:25.551+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1777669105551, current=UP, previous=STARTING]
+2026-05-02T03:58:25.552+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_INTELLIGENCE-SERVICE/192.168.1.72:intelligence-service:8084: registering service...
+2026-05-02T03:58:25.562+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path ''
+2026-05-02T03:58:25.563+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8084
+2026-05-02T03:58:25.577+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [nfoReplicator-0] [                                                 ] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_INTELLIGENCE-SERVICE/192.168.1.72:intelligence-service:8084 - registration status: 204
+2026-05-02T03:58:25.583+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [           main] [                                                 ] c.s.i.IntelligenceServiceApplication     : Started IntelligenceServiceApplication in 5.616 seconds (process running for 5.926)
+2026-05-02T03:58:26.160+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [nio-8084-exec-1] [                                                 ] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-02T03:58:26.160+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [nio-8084-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-02T03:58:26.162+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [nio-8084-exec-1] [                                                 ] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-02T04:03:25.454+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:08:25.464+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:13:25.472+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:18:25.483+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:23:25.495+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:28:25.505+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:33:25.516+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:38:25.522+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:43:25.529+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:48:25.540+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:53:25.551+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T04:58:25.563+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:03:25.573+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:08:25.585+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:13:25.596+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:18:25.551+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:23:25.563+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:28:25.575+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:33:25.589+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:38:25.601+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:43:25.612+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:48:25.624+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:53:25.633+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T05:58:25.641+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:03:25.647+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:08:25.655+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:13:25.670+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:18:25.695+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:23:25.708+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:28:25.719+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:33:25.727+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:38:25.739+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:43:25.751+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:48:25.761+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:53:25.769+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T06:58:25.775+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-02T07:03:25.785+07:00  INFO [intelligence-service,,] 37865 --- [intelligence-service] [trap-executor-0] [                                                 ] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:05 h
+[INFO] Finished at: 2026-05-02T07:03:35+07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.5:run (default-cli) on project intelligence-service: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

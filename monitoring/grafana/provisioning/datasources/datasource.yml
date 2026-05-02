@@ -6,4 +6,15 @@ datasources:
     access: proxy
     url: http://prometheus:9090
     isDefault: true
+    jsonData:
+      timeInterval: "15s"
+      httpMethod: POST
+
+  - name: Zipkin
+    type: zipkin
+    access: proxy
+    url: http://zipkin:9411
+    jsonData:
+      tracesToLogsV2:
+        enabled: false
 

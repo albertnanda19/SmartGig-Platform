@@ -44,27 +44,39 @@ public class ProjectController {
     private final ProjectService projectService;
     private final ProjectSearchService projectSearchService;
 
+    @GetMapping("/")
+    @Operation(summary = "Project service root endpoint")
+    public ResponseEntity<ApiResponse<java.util.Map<String, Object>>> getProjectsRoot() {
+        return ResponseEntity.ok(ApiResponse.success(java.util.Map.of(
+                "service", "Project Service",
+                "version", "1.0.0",
+                "endpoints", "/api/v1/projects, /api/v1/projects/{id}, /api/v1/projects/search/**",
+                "status", "UP")));
+    }
+
     @PostMapping
     @Operation(summary = "Create project (CLIENT)")
-    public ResponseEntity<ApiResponse<ProjectResponse>> createProject(HttpServletRequest http, @Valid @RequestBody CreateProjectRequest request) {
+    public ResponseEntity<ApiResponse<ProjectResponse>> createProject(HttpServletRequest http,
+            @Valid @RequestBody CreateProjectRequest request) {
         validateRole(http, "CLIENT");
         Long clientId = extractUserId(http);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success("Created", projectService.createProject(clientId, request)));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.success("Created", projectService.createProject(clientId, request)));
     }
 
     @GetMapping
     @Operation(summary = "Get all projects")
     public ResponseEntity<ApiResponse<Page<ProjectResponse>>> getAllProjects(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
+            @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(ApiResponse.success(projectService.getAllProjects(pageable)));
     }
 
     @GetMapping("/search")
     @Operation(summary = "Search projects (Elasticsearch)")
-    public ResponseEntity<ApiResponse<Page<ProjectDocument>>> searchProjects(@ModelAttribute ProjectSearchRequest request) {
+    public ResponseEntity<ApiResponse<Page<ProjectDocument>>> searchProjects(
+            @ModelAttribute ProjectSearchRequest request) {
         return ResponseEntity.ok(ApiResponse.success(projectSearchService.searchProjects(request)));
     }
 
@@ -76,7 +88,8 @@ public class ProjectController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update project (CLIENT owner)")
-    public ResponseEntity<ApiResponse<ProjectResponse>> updateProject(HttpServletRequest http, @PathVariable Long id, @RequestBody UpdateProjectRequest request) {
+    public ResponseEntity<ApiResponse<ProjectResponse>> updateProject(HttpServletRequest http, @PathVariable Long id,
+            @RequestBody UpdateProjectRequest request) {
         validateRole(http, "CLIENT");
         Long clientId = extractUserId(http);
         return ResponseEntity.ok(ApiResponse.success("Updated", projectService.updateProject(id, clientId, request)));
@@ -84,10 +97,12 @@ public class ProjectController {
 
     @PatchMapping("/{id}/status")
     @Operation(summary = "Update project status via state machine (CLIENT owner)")
-    public ResponseEntity<ApiResponse<ProjectResponse>> updateStatus(HttpServletRequest http, @PathVariable Long id, @RequestBody UpdateProjectStatusRequest request) {
+    public ResponseEntity<ApiResponse<ProjectResponse>> updateStatus(HttpServletRequest http, @PathVariable Long id,
+            @RequestBody UpdateProjectStatusRequest request) {
         validateRole(http, "CLIENT");
         Long clientId = extractUserId(http);
-        return ResponseEntity.ok(ApiResponse.success("Updated", projectService.updateProjectStatus(id, clientId, request)));
+        return ResponseEntity
+                .ok(ApiResponse.success("Updated", projectService.updateProjectStatus(id, clientId, request)));
     }
 
     @DeleteMapping("/{id}")
@@ -114,4 +129,3 @@ public class ProjectController {
         }
     }
 }
-

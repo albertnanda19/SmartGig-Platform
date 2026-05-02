@@ -11,30 +11,32 @@ volumes:
   kafka_data:
   mongo_data:
   elasticsearch_data:
+  grafana_data:
+  prometheus_data:
 
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: smartgig-postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: smartgig
       POSTGRES_PASSWORD: smartgig123
       POSTGRES_DB: smartgig_db
+      POSTGRES_MULTIPLE_DATABASES: smartgig_db,smartgig_auth,smartgig_user,smartgig_project
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./scripts/postgres-init-multiple-dbs.sh:/docker-entrypoint-initdb.d/postgres-init-multiple-dbs.sh:ro
     networks:
       - smartgig-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U smartgig"]
+      test: ["CMD-SHELL", "pg_isready -U smartgig -d postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   redis:
     image: redis:7.2-alpine
-    container_name: smartgig-redis
     ports:
       - "6379:6379"
     command: redis-server --requirepass smartgig123 --maxmemory 256mb --maxmemory-policy allkeys-lru
@@ -50,7 +52,6 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:7.6.0
-    container_name: smartgig-kafka
     ports:
       - "9092:9092"
       - "29092:29092"
@@ -80,7 +81,6 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: smartgig-kafka-ui
     ports:
       - "8090:8080"
     environment:
@@ -92,11 +92,42 @@ services:
     networks:
       - smartgig-network
 
-  mongo:
+  kafka-init:
+    image: confluentinc/cp-kafka:7.6.0
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "-c"]
+    command: |
+      "
+      echo 'Waiting for Kafka...'
+      cub kafka-ready -b kafka:29092 1 30
+
+      echo 'Creating topics...'
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic user.registered --partitions 3 --replication-factor 1 --config retention.ms=604800000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic project.created --partitions 3 --replication-factor 1 --config retention.ms=604800000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic project.applied --partitions 3 --replication-factor 1 --config retention.ms=604800000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic project.status.changed --partitions 3 --replication-factor 1 --config retention.ms=604800000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic skill.trending --partitions 1 --replication-factor 1 --config retention.ms=2592000000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic notification.send --partitions 3 --replication-factor 1 --config retention.ms=86400000 --config cleanup.policy=delete
+
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic user.registered.DLT --partitions 1 --replication-factor 1 --config retention.ms=2592000000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic project.created.DLT --partitions 1 --replication-factor 1 --config retention.ms=2592000000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic project.applied.DLT --partitions 1 --replication-factor 1 --config retention.ms=2592000000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic project.status.changed.DLT --partitions 1 --replication-factor 1 --config retention.ms=2592000000 --config cleanup.policy=delete
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic notification.send.DLT --partitions 1 --replication-factor 1 --config retention.ms=2592000000 --config cleanup.policy=delete
+
+      echo 'All topics created!'
+      "
+    restart: on-failure
+    networks:
+      - smartgig-network
+
+  mongodb:
     image: mongo:7.0
-    container_name: smartgig-mongo
     ports:
       - "27017:27017"
+    command: ["mongod", "--bind_ip", "0.0.0.0", "--auth"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: smartgig
       MONGO_INITDB_ROOT_PASSWORD: smartgig123
@@ -113,7 +144,6 @@ services:
 
   elasticsearch:
     image: elasticsearch:8.11.0
-    container_name: smartgig-elasticsearch
     ports:
       - "9200:9200"
     environment:
@@ -132,17 +162,46 @@ services:
 
   zipkin:
     image: openzipkin/zipkin:3
-    container_name: smartgig-zipkin
     ports:
       - "9411:9411"
     networks:
       - smartgig-network
 
-  # eureka-server akan di-build dari source, jalankan service ini terpisah
-  eureka-server:
-    build: ./eureka-server
-    container_name: smartgig-eureka-server
+  grafana:
+    image: grafana/grafana:10.3.1
     ports:
-      - "8761:8761"
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    networks:
+      - smartgig-network
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:3000/api/health >/dev/null 2>&1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  prometheus:
+    image: prom/prometheus:v2.49.1
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
     networks:
       - smartgig-network

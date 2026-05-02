@@ -50,10 +50,23 @@ resilience4j:
         timeout-duration: 3s
 
 management:
+  endpoint:
+    health:
+      show-details: when_authorized
+      show-components: when_authorized
+    shutdown:
+      enabled: false
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus,circuitbreakers
+        include: health,info,prometheus,metrics,loggers,circuitbreakers
+        exclude: shutdown,env,configprops,heapdump,threaddump
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 50ms,100ms,200ms,500ms,1000ms
   tracing:
     sampling:
       probability: 1.0
@@ -62,6 +75,8 @@ management:
       endpoint: ${ZIPKIN_URL:http://localhost:9411/api/v2/spans}
 
 logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
     com.smartgig: DEBUG
     io.github.resilience4j: DEBUG

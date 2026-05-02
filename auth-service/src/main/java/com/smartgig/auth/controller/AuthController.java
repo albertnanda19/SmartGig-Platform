@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -28,6 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Authentication", description = "Auth endpoints")
 public class AuthController {
     private final AuthService authService;
+
+    @GetMapping("/")
+    @Operation(summary = "Auth service root endpoint")
+    public ResponseEntity<ApiResponse<java.util.Map<String, Object>>> getAuthRoot() {
+        return ResponseEntity.ok(ApiResponse.success(java.util.Map.of(
+                "service", "Auth Service",
+                "version", "1.0.0",
+                "endpoints", "/api/v1/auth/register, /api/v1/auth/login, /api/v1/auth/refresh, /api/v1/auth/logout",
+                "status", "UP")));
+    }
 
     @PostMapping("/register")
     @Operation(summary = "Register new user credentials")
@@ -58,4 +69,3 @@ public class AuthController {
         return ResponseEntity.ok(authService.logout(userId));
     }
 }
-

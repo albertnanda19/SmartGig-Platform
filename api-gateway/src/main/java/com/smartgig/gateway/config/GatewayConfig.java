@@ -1,8 +1,11 @@
 package com.smartgig.gateway.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.smartgig.common.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class GatewayConfig {
 
     @Bean
@@ -28,11 +32,15 @@ public class GatewayConfig {
             }
 
             HttpStatus status = statusOf(ex);
+            log.error("Gateway error for path: {} - Status: {} - Error: {}",
+                    exchange.getRequest().getPath(), status, ex.getMessage(), ex);
+
             exchange.getResponse().setStatusCode(status);
             exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
             byte[] bytes;
             try {
-                bytes = objectMapper.writeValueAsBytes(ApiResponse.error(messageOf(ex, status)));
+                String errorMessage = status.is5xxServerError() ? "Internal server error" : messageOf(ex, status);
+                bytes = objectMapper.writeValueAsBytes(ApiResponse.error(errorMessage));
             } catch (Exception e) {
                 bytes = "{\"success\":false,\"message\":\"Internal server error\"}".getBytes(StandardCharsets.UTF_8);
             }
@@ -42,7 +50,10 @@ public class GatewayConfig {
 
     @Bean
     public ObjectMapper objectMapper() {
-        return new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        return mapper;
     }
 
     private HttpStatus statusOf(Throwable ex) {
@@ -62,4 +73,3 @@ public class GatewayConfig {
         return status.is5xxServerError() ? "Internal server error" : "Request failed";
     }
 }
-

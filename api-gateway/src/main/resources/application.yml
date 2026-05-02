@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: api-gateway
+  main:
+    web-application-type: reactive
   data:
     redis:
       host: ${REDIS_HOST:localhost}
@@ -16,10 +18,11 @@ spring:
           enabled: true
           lower-case-service-id: true
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Credentials
+          Access-Control-Allow-Origin
       globalcors:
         cors-configurations:
-          '[/**]':
+          "[/**]":
             allowedOrigins: "*"
             allowedMethods: "*"
             allowedHeaders: "*"
@@ -88,14 +91,25 @@ eureka:
     prefer-ip-address: true
 
 management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    shutdown:
+      enabled: false
+    gateway:
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus,gateway
+        include: health,info,prometheus,metrics,loggers,gateway
+        exclude: shutdown,env,configprops,heapdump,threaddump
   metrics:
-    export:
-      prometheus:
-        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 50ms,100ms,200ms,500ms,1000ms
   tracing:
     sampling:
       probability: 1.0
@@ -108,7 +122,8 @@ jwt:
   expiration: 86400000
 
 logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
     org.springframework.cloud.gateway: INFO
     com.smartgig: DEBUG
-
